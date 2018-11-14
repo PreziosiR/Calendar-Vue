@@ -11,37 +11,12 @@
            </div>
         </div>
         <div class="content">
-            <div class="days blank">
-        
+            <div v-for="blank in numberOfBlank" class="blank">
+                <p></p>
             </div>
-            <div class="days blank">
-                
-            </div>
-            <div class="days">
-                <p>3</p>
-            </div>
-            <div class="days">
-                3
-            </div>
-            <div class="days">
-                3
-            </div>
-            <div class="days">
-                3
-            </div>
-            <div class="days">
-                3
-            </div>
-            <div class="days">
-                3
-            </div>
-            <div class="days">
-                3
-            </div>
-            <div class="days">
-                3
-            </div>
-            
+            <div v-for="day in daysInMonth" class="days">
+                <p>{{ day }}</p>    
+            </div>      
         </div>
     </div>
 </template>
@@ -58,13 +33,14 @@ export default {
             month: moment(),
             days: [
                 "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"
-            ]
+            ],
+            daysInMonth: moment().daysInMonth(),
+            numberOfBlank: moment().startOf('month').day() - 1
         }
     },
     methods: {
         previousMonth() {
             this.month = moment(this.month).subtract(1, "months")
-
         },
 
         nextMonth() {
