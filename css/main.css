@@ -5,15 +5,66 @@ body{
   margin-left: auto;
   margin-right: auto;
   margin-top: 30vh;
-  width: 320px;
+  width: 480px;
   font-family: 'Lato', sans-serif;
 }
 
+i {
+  color: #FFF;
+}
+
+p{
+  display: flex;
+  align-items: center;
+}
+
+.days {
+  height: 68px;
+  width: 14%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
 .content {
-  width: 320px;
+  flex-wrap: wrap;
+  width: 480px;
   height: 420px;
+  display: flex;
+  
+  position: relative;
   background-color: #FFFFFF;
   border-radius: 0px 0px 12px 12px;
+}
+
+.content div:hover{
+  background-color: #F8F8F8;
+}
+
+.weekdays div{
+  display:inline-block;
+  vertical-align:top;
+}
+
+.weekdays {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  width: 480px;
+  height: 75px;
+  overflow: hidden;
+  float: left;
+  z-index: 10;
+  background-color: #FFF;
+  color: #FF6860;
+  border-bottom:  1px solid #FF6860;
+}
+
+.blank {
+  background-color: #E8E8E8;
+  width: 68px;
+  height: 68px;
 }
 
 #calendar_weekdays div{
