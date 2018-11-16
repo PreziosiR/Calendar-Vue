@@ -2,11 +2,11 @@
     <div id="calendar">
         <div id="calendar_header">
             <i @click="previousMonth" class="fas fa-chevron-left"></i>
-            <h1>{{ firstLetterUpperCase(month.format('MMMM')) }}</h1>
+            <h1>{{ firstLetterUpperCase(month.format('MMMM')) }} {{ month.format('Y') }}</h1>
             <i @click="nextMonth" class="fas fa-chevron-right"></i>
         </div>
         <div class="weekdays">
-           <div v-for="day in days">
+           <div v-for="day in days" @click="functionShowModal">
                {{ day }}
            </div>
         </div>
@@ -16,18 +16,31 @@
             </div>
             <div v-for="day in daysInMonth" class="days">
                 <p>{{ day }}</p>    
-            </div>      
+            </div>
+            <modal v-if="showModal" @close="showModal = false">
+            <!--
+            you can use custom content here to overwrite
+            default content
+            -->
+            <h3 slot="header">custom header</h3>
+            </modal>
         </div>
     </div>
 </template>
 
 <script>
 import moment from 'moment'
-
+import modal from './modal.vue'
 moment.locale('fr')
+
 
 export default {
     name: "App",
+
+    components: {
+        modal
+    },
+
     data: () => {
         return {
             month: moment(),
@@ -37,7 +50,8 @@ export default {
             //renvoie le nombre de jour du mois courant
             daysInMonth: moment().daysInMonth(),
             //calcul le nombre d'espace vide à ajouté en fonction du premier jour du mois
-            numberOfBlank: moment().startOf('month').day() - 1
+            numberOfBlank: moment().startOf('month').day() - 1,
+            showModal: false
         }
     },
     methods: {
@@ -55,6 +69,11 @@ export default {
 
         firstLetterUpperCase(str) {
             return str[0].toUpperCase() + str.substring(1)
+        },
+
+        functionShowModal() {
+            console.log('test')
+            this.showModal = true;
         }
     }
 }

@@ -67,11 +67,7 @@ p{
   height: 68px;
 }
 
-#calendar_weekdays div{
-  display:inline-block;
-  vertical-align:top;
-}
-#calendar_content, #calendar_weekdays, #calendar_header{
+#calendar_header{
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -81,36 +77,13 @@ p{
   float: left;
   z-index: 10;
 }
-#calendar_weekdays div, #calendar_content div{
-  width:40px;
-  height: 40px;
-  overflow: hidden;
-  text-align: center;
-  background-color: #FFFFFF;
-  color: #787878;
-}
-#calendar_content{
-  -webkit-border-radius: 0px 0px 12px 12px;
-  -moz-border-radius: 0px 0px 12px 12px; 
-  border-radius: 0px 0px 12px 12px;
-}
-#calendar_content div{
-  float: left;
-}
-#calendar_content div:hover{
-  background-color: #F8F8F8;
-}
-#calendar_content div.blank{
-  background-color: #E8E8E8;
-}
+
 #calendar_header, #calendar_content div.today{
   zoom: 1;
   filter: alpha(opacity=70);
   opacity: 0.7;
 }
-#calendar_content div.today{
-  color: #FFFFFF;
-}
+
 #calendar_header{
   width: 100%;
   height: 37px;
@@ -121,15 +94,81 @@ p{
   -moz-border-radius: 12px 12px 0px 0px; 
   border-radius: 12px 12px 0px 0px;
 }
+
 #calendar_header h1{
   font-size: 1.5em;
   color: #FFFFFF;
   float:left;
   width:70%;
 }
+
 i[class^=icon-chevron]{
   color: #FFFFFF;
   float: left;
   width:15%;
   border-radius: 50%;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
