@@ -2,7 +2,7 @@
     <div id="calendar">
         <div id="calendar_header">
             <i @click="previousMonth" class="fas fa-chevron-left"></i>
-            <h1>{{ month.format('MMMM') }}</h1>
+            <h1>{{ firstLetterUpperCase(month.format('MMMM')) }}</h1>
             <i @click="nextMonth" class="fas fa-chevron-right"></i>
         </div>
         <div class="weekdays">
@@ -34,17 +34,27 @@ export default {
             days: [
                 "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"
             ],
+            //renvoie le nombre de jour du mois courant
             daysInMonth: moment().daysInMonth(),
+            //calcul le nombre d'espace vide à ajouté en fonction du premier jour du mois
             numberOfBlank: moment().startOf('month').day() - 1
         }
     },
     methods: {
         previousMonth() {
             this.month = moment(this.month).subtract(1, "months")
+            this.daysInMonth = moment(this.month).daysInMonth()
+            this.numberOfBlank = moment(this.month).startOf('month').day() - 1
         },
 
         nextMonth() {
             this.month = moment(this.month).add(1, "months")
+            this.daysInMonth = moment(this.month).daysInMonth()
+            this.numberOfBlank = moment(this.month).startOf('month').day() - 1
+        },
+
+        firstLetterUpperCase(str) {
+            return str[0].toUpperCase() + str.substring(1)
         }
     }
 }
